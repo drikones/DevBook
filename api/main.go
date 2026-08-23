@@ -12,9 +12,8 @@ import (
 // the <icon src="AllIcons.Actions.Execute"/> icon in the gutter and select the <b>Run</b> menu item from here.</p>
 func main() {
 	config.Carregar()
-	fmt.Println(config.Porta)
-	fmt.Println(config.StringConexaoBanco)
 	fmt.Println("Rodando API")
 	r := router.Gerar()
-	log.Fatal(http.ListenAndServe(":8000", r))
+	fmt.Printf("Escutando na porta %d", config.Porta)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf("%d", config.Porta), r))
 }
