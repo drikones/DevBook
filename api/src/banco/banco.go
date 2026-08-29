@@ -3,6 +3,8 @@ package banco
 import (
 	"DevBook/src/config"
 	"database/sql"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func Conectar() (*sql.DB, error) {

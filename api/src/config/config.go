@@ -29,5 +29,5 @@ func Carregar() {
 		os.Getenv("DB_SENHA"),
 		os.Getenv("IP_INSTANCIA"),
 		os.Getenv("PORTA_INSTANCIA"),
-		os.Getenv("DB_NAME"))
+		os.Getenv("DB_NOME"))
 }
