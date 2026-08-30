@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"DevBook/src/autenticacao"
 	"DevBook/src/banco"
 	"DevBook/src/modelos"
 	"DevBook/src/repositorios"
@@ -43,5 +44,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		respostas.Erro(w, http.StatusUnauthorized, erro)
 		return
 	}
-	w.Write([]byte("Login realizado com sucesso"))
+
+	token, _ := autenticacao.CriarToken(usuarioSalvoNoBanco.ID)
+	w.Write([]byte("Login realizado com sucesso com token " + token))
 }
