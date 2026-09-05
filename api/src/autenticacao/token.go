@@ -2,6 +2,9 @@ package autenticacao
 
 import (
 	"DevBook/src/config"
+	"errors"
+	"fmt"
+	"net/http"
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
@@ -22,4 +25,38 @@ func CriarToken(usuarioID uint64) (string, error) {
 		return "", erro
 	}
 	return tokenString, nil
+}
+
+// ValidarToken verifica se um token passado na requisição é válido
+func ValidarToken(r *http.Request) error {
+	tokenString, erro := extrairToken(r)
+	if erro != nil {
+		return erro
+	}
+	token, erro := jwt.Parse(tokenString, retornarChaveVerificacao)
+	if erro != nil {
+		return erro
+	}
+	if _, ok := token.Claims.(jwt.MapClaims); !ok && !token.Valid {
+		return errors.New("token inválido")
+	}
+	return nil
+}
+
+func extrairToken(r *http.Request) (string, error) {
+	token := r.Header.Get("Authorization")
+	if token == "" {
+		return "", errors.New("token não informado")
+	}
+	if token[:7] != "Bearer " {
+		return "", errors.New("token mal formatado")
+	}
+	return token[7:], nil
+}
+
+func retornarChaveVerificacao(token *jwt.Token) (interface{}, error) {
+	if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+		return nil, fmt.Errorf("método de assinatura inesperado: ", token.Header["alg"])
+	}
+	return config.SecretKey, nil
 }
