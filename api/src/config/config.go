@@ -12,6 +12,7 @@ import (
 var (
 	StringConexaoBanco = ""
 	Porta              = 0
+	SecretKey          []byte
 )
 
 // vai inicializar as variaveis de ambiente
@@ -30,4 +31,5 @@ func Carregar() {
 		os.Getenv("IP_INSTANCIA"),
 		os.Getenv("PORTA_INSTANCIA"),
 		os.Getenv("DB_NOME"))
+	SecretKey = []byte(os.Getenv("SECRET_KEY"))
 }
