@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strconv"
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
@@ -59,4 +60,24 @@ func retornarChaveVerificacao(token *jwt.Token) (interface{}, error) {
 		return nil, fmt.Errorf("método de assinatura inesperado: ", token.Header["alg"])
 	}
 	return config.SecretKey, nil
+}
+
+// ExtrairUsuarioId extrai o id do usuário do token
+func ExtrairUsuarioId(r *http.Request) (uint64, error) {
+	tokenString, erro := extrairToken(r)
+	if erro != nil {
+		return 0, erro
+	}
+	token, erro := jwt.Parse(tokenString, retornarChaveVerificacao)
+	if erro != nil {
+		return 0, erro
+	}
+	if permissoes, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+		usuarioID, erro := strconv.ParseUint(fmt.Sprintf("%.0f", permissoes["usuarioId"]), 10, 64)
+		if erro != nil {
+			return 0, erro
+		}
+		return usuarioID, nil
+	}
+	return 0, errors.New("token inválido")
 }
