@@ -1,0 +1,318 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: crud-basico
+meta:
+  id: wrk_6a9ade79f1cf441faf7c4b366f167e4e
+  created: 1786893458926
+  modified: 1786893458926
+  description: ""
+collection:
+  - url: http://localhost:8000/usuarios
+    name: INSERE USUÁRIO
+    meta:
+      id: req_54e6aefef69848a8b88a2089dadc5d9d
+      created: 1786893466453
+      modified: 1788744650949
+      isPrivate: false
+      description: ""
+      sortKey: -1787503314000
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome": "Lizete",
+        	"nick": "lizete",
+        	"email": "lizete@gmail.com",
+        	"senha": "lizete123"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+        60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/usuarios
+    name: BUSCA USUÁRIOS
+    meta:
+      id: req_58311a62f1824cf09b3686f2b8893cf9
+      created: 1786895334813
+      modified: 1788744654603
+      isPrivate: false
+      description: ""
+      sortKey: -1787200284097
+    method: GET
+    authentication:
+      type: bearer
+      token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+        60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/usuarios/2
+    name: BUSCA USUARIO POR ID
+    meta:
+      id: req_b50cb81069904c71ad997a495ad1be72
+      created: 1786895860987
+      modified: 1788744657841
+      isPrivate: false
+      description: ""
+      sortKey: -1787048769145.5
+    method: GET
+    authentication:
+      type: bearer
+      token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+        60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/usuarios/1
+    name: ATUALIZANDO USUARIO
+    meta:
+      id: req_3d53cf3db94243d1b9f2da11869f690b
+      created: 1786896769482
+      modified: 1788744660746
+      isPrivate: false
+      description: ""
+      sortKey: -1786973011669.75
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome": "Pedro Rocha",
+        	"nick": "pedro",
+        	"email": "pedro@gmail.com"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+        60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/usuarios/2
+    name: DELETA USUARIO
+    meta:
+      id: req_6d0fe56961d7451a81ff07c11c5aed05
+      created: 1786897254194
+      modified: 1788642194309
+      isPrivate: false
+      description: ""
+      sortKey: -1786897254194
+    method: DELETE
+    authentication:
+      type: bearer
+      token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+        60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/login
+    name: LOGIN
+    meta:
+      id: req_b9bee5cd3ecd47ccb7a875fa3ceda27d
+      created: 1788109373806
+      modified: 1788747942518
+      isPrivate: false
+      description: ""
+      sortKey: -1788109373806
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email":"marcia@devbook.com",
+        	"senha": "marcia123"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/usuarios/1/seguir
+    name: SEGUIR USUARIO
+    meta:
+      id: req_e7af16fcba164a9cb14b0303b08a890c
+      created: 1788743060849
+      modified: 1788744646103
+      isPrivate: false
+      description: ""
+      sortKey: -1786893466403
+    method: POST
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+        60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/usuarios/1/parar-de-seguir
+    name: PARAR DE SEGUIR USUARIO
+    meta:
+      id: req_0f69619a9f384b06818ca1bde7975795
+      created: 1788744442236
+      modified: 1788744641372
+      isPrivate: false
+      description: ""
+      sortKey: -1786893466353
+    method: DELETE
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+        60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/usuarios/1/seguidores
+    name: LISTAR SEGUIDORES
+    meta:
+      id: req_f8a472b2e94843f6be218c0d2a99bfaf
+      created: 1788745660101
+      modified: 1788745735468
+      isPrivate: false
+      description: ""
+      sortKey: -1786893466253
+    method: GET
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+        60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/usuarios/1/seguindo
+    name: LISTAR SEGUIDOS POR USUARIO
+    meta:
+      id: req_fadff52a13464f20bc3f71a64c448a16
+      created: 1788746375123
+      modified: 1788747639875
+      isPrivate: false
+      description: ""
+      sortKey: -1786893466153
+    method: GET
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+        60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/usuarios/4/atualizar-senha
+    name: ATUALIZA SENHA USUARIO
+    meta:
+      id: req_f28947790c3846ec88b7a71f4f22cdc2
+      created: 1788747641137
+      modified: 1788747968302
+      isPrivate: false
+      description: ""
+      sortKey: -1786893466053
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"atual": "senha_marcia",
+        	"nova": "marcia123"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+        60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_06c1d38f37f249e0d147b275b1db5eea9704a8fc
+    created: 1786893458928
+    modified: 1786893458928
+environments:
+  name: Base Environment
+  meta:
+    id: env_06c1d38f37f249e0d147b275b1db5eea9704a8fc
+    created: 1786893458927
+    modified: 1786893458927
+    isPrivate: false
