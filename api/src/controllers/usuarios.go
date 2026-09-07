@@ -6,6 +6,7 @@ import (
 	"DevBook/src/modelos"
 	"DevBook/src/repositorios"
 	"DevBook/src/respostas"
+	"DevBook/src/seguranca"
 	"encoding/json"
 	"errors"
 	"io/ioutil"
@@ -302,4 +303,62 @@ func BuscarSeguindo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	respostas.JSON(w, http.StatusOK, seguindo)
+}
+
+// AtualizarSenha permite que um usuário atualize sua senha
+func AtualizarSenha(w http.ResponseWriter, r *http.Request) {
+	parametros := mux.Vars(r)
+	usuarioID, erro := strconv.ParseUint(parametros["usuarioId"], 10, 64)
+	if erro != nil {
+		respostas.Erro(w, http.StatusBadRequest, erro)
+		return
+	}
+
+	if validaIdUsuario(w, r, erro, usuarioID) {
+		return
+	}
+
+	corpoRequisicao, erro := ioutil.ReadAll(r.Body)
+	if erro != nil {
+		respostas.Erro(w, http.StatusUnprocessableEntity, erro)
+		return
+	}
+
+	var senha modelos.Senha
+	if erro = json.Unmarshal(corpoRequisicao, &senha); erro != nil {
+		respostas.Erro(w, http.StatusBadRequest, erro)
+		return
+	}
+
+	db, erro := banco.Conectar()
+	if erro != nil {
+		respostas.Erro(w, http.StatusInternalServerError, erro)
+		return
+	}
+	defer db.Close()
+
+	repositorio := repositorios.NovoRepositorioDeUsuarios(db)
+	senhaNoBanco, erro := repositorio.BuscarSenha(usuarioID)
+	if erro != nil {
+		respostas.Erro(w, http.StatusInternalServerError, erro)
+		return
+	}
+
+	if erro = seguranca.VerificarSenha(senha.Atual, senhaNoBanco); erro != nil {
+		respostas.Erro(w, http.StatusUnauthorized, errors.New("a senha atual não confere"))
+		return
+	}
+
+	novaSenhaComHash, erro := seguranca.Hash(senha.Nova)
+	if erro != nil {
+		respostas.Erro(w, http.StatusInternalServerError, erro)
+		return
+	}
+
+	if erro = repositorio.AtualizarSenha(usuarioID, string(novaSenhaComHash)); erro != nil {
+		respostas.Erro(w, http.StatusInternalServerError, erro)
+		return
+	}
+
+	respostas.JSON(w, http.StatusNoContent, nil)
 }
