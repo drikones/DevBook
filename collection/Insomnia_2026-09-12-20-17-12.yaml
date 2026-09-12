@@ -12,7 +12,7 @@ collection:
     meta:
       id: req_b9bee5cd3ecd47ccb7a875fa3ceda27d
       created: 1788109373806
-      modified: 1788797862577
+      modified: 1788800593300
       isPrivate: false
       description: ""
       sortKey: -1788797668739
@@ -324,21 +324,185 @@ collection:
         meta:
           id: req_78dc25baee2a4c39a8092ece5e21deca
           created: 1788797800204
-          modified: 1788798344465
+          modified: 1789252742770
           isPrivate: false
           description: ""
-          sortKey: -1788797811559
+          sortKey: -1788800735663
         method: POST
         body:
           mimeType: application/json
           text: |-
             {
-            	"titulo": "Minha primeira publicação",
-            	"conteudo": "Olá Mundo! Minha primeira publicação!"
+            	"titulo": "Olá, galera",
+            	"conteudo": "Estou na área! 2"
             }
         headers:
           - name: Content-Type
             value: application/json
+        authentication:
+          type: bearer
+          token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+            60 %}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/publicacoes/2
+        name: BUSCA PUBLICACAO POR ID
+        meta:
+          id: req_1d2d750b21474f02853a86c34e6b685e
+          created: 1788799706670
+          modified: 1789254011162
+          isPrivate: false
+          description: ""
+          sortKey: -1788797811459
+        method: GET
+        authentication:
+          type: bearer
+          token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+            60 %}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/publicacoes
+        name: BUSCA PUBLICACOES
+        meta:
+          id: req_f7a3a2b21ba64b539efc4d480bef6a50
+          created: 1788800735563
+          modified: 1788800798997
+          isPrivate: false
+          description: ""
+          sortKey: -1788800735563
+        method: GET
+        authentication:
+          type: bearer
+          token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+            60 %}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/publicacoes/2
+        name: ATUALIZA PUBLICACAO
+        meta:
+          id: req_c503c787dd6d4a05ae717485e9f99612
+          created: 1789251827535
+          modified: 1789252091756
+          isPrivate: false
+          description: ""
+          sortKey: -1788797811359
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"titulo": "Minha segunda publicação",
+            	"conteudo": "Esta foi minha segunda publicacao"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+            60 %}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/publicacoes/4
+        name: DELETAR PUBLICACAO
+        meta:
+          id: req_b3382e53423b4be6bdef45ab20281efc
+          created: 1789252756119
+          modified: 1789253345530
+          isPrivate: false
+          description: ""
+          sortKey: -1789252756119
+        method: DELETE
+        authentication:
+          type: bearer
+          token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+            60 %}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/usuarios/1/publicacoes
+        name: BUSCAR PUBLICACOES DE UM USUARIO
+        meta:
+          id: req_9a5ffdf4b8dc4e00a75b4dc535360b2f
+          created: 1789253293404
+          modified: 1789253887150
+          isPrivate: false
+          description: ""
+          sortKey: -1788797811259
+        method: GET
+        authentication:
+          type: bearer
+          token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+            60 %}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/publicacoes/2/curtir
+        name: CURTIR PUBLICACAO
+        meta:
+          id: req_ac2e49b4920648a0821768710ee50780
+          created: 1789253801282
+          modified: 1789254492869
+          isPrivate: false
+          description: ""
+          sortKey: -1788797811159
+        method: PATCH
+        authentication:
+          type: bearer
+          token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
+            60 %}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/publicacoes/2/descurtir
+        name: DESCURTIR PUBLICACAO
+        meta:
+          id: req_6bde93c2b4f24b9aab2c711aa15b47c3
+          created: 1789254494934
+          modified: 1789254620971
+          isPrivate: false
+          description: ""
+          sortKey: -1788797811059
+        method: PATCH
         authentication:
           type: bearer
           token: "{% response 'raw', 'req_b9bee5cd3ecd47ccb7a875fa3ceda27d', '', 'always',
