@@ -48,6 +48,7 @@ func CriarUsuario(w http.ResponseWriter, r *http.Request) {
 	usuarioID, erro := repositorio.Criar(usuario)
 	if erro != nil {
 		respostas.Erro(w, http.StatusInternalServerError, erro)
+		return
 	}
 	usuario.ID = usuarioID
 	respostas.JSON(w, http.StatusCreated, usuario)
