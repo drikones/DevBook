@@ -46,7 +46,7 @@ input::placeholder {
 
 .container-login > div,
 .conteiner-login > div {
-    width: min(100%, 400px);
+    width: min(100%, 510px);
     background: #fff;
     border-radius: 10px;
     position: relative;

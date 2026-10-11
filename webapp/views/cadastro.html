@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Devbook - Cadastro</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/login.css">
+</head>
+<body>
+    <div class="conteiner-login">
+        <div>
+            <form id="cadastro" class="devbook-form">
+                <span>Crie a sua conta no DevBook</span>
+                <div>
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite o seu nome" required>
+                </div>
+                <div>
+                    <label for="nick">Nick</label>
+                    <input type="text" id="nick" name="nick" placeholder="Digite o seu nick" required>
+                </div>
+                <div>
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="Digite o seu email" required>
+                </div>
+                <div>
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                </div>
+               <div>
+                 <label for="confirmar-senha">Confirmar Senha</label>
+                 <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirme a sua senha" required>
+               </div>
+                <a href="/login">Já tem uma conta? Clique aqui para entrar</a>
+                <button type="submit" class="btn-devbook">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
