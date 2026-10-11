@@ -18,6 +18,7 @@ function criarUsuario(evento) {
         window.location = "/login";
     }).fail(function (erro) {
         var mensagem = erro.responseJSON && erro.responseJSON.erro;
-        alert(mensagem || "Erro ao cadastrar o usuário!");
+        alert("Erro ao cadastrar o usuário!");
+        console.log(mensagem);
     });
 }
