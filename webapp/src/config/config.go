@@ -26,6 +26,6 @@ func Carregar() {
 		log.Fatal(erro)
 	}
 	ApiUrl = os.Getenv("API_URL")
-	HashKey = []byte(os.Getenv("HASH_KEY"))
-	BlockKey = []byte(os.Getenv("BLOCK_KEY"))
+	HashKey = []byte(os.Getenv("HASH"))
+	BlockKey = []byte(os.Getenv("BLOCK"))
 }
